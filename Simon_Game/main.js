@@ -27,7 +27,34 @@ function playSound(id) {
     var sound = new Audio(boardSound[id]);
     sound.play();
 }
-// Add a temporary class, sound
+// Add a temporary class, sound    //userSequence
+    function userSequence() {
+        userSeq.push(id);
+        addClassSound(id, color);
+        if (!checkUserSeq()) {
+            //if playing strict mode reset everything
+            if (strict) {
+                simonSeq = [];
+                level = 1;
+            }
+            error = true;
+            displayError();
+            userSeq = [];
+            simonSequence();
+        }
+        //checking end of sequence
+        else if (userSeq.length == simonSeq.length && userSeq.length < numLevels) {
+            level++;
+            userSeq = [];
+            error = false;
+            simonSequence();
+        }
+        //checking for winners
+        if (userSeq.length === numLevels) {
+            displayWinner();
+            resetGame();
+        }
+    }
 function addClassSound(id, color) {
     $("#" + id).addClass(color + "-active");
     playSound(id);
@@ -88,98 +115,95 @@ $(document).ready(function () {
 });
 
 //2 - Sequences 
-//userSequence
-function userSequence() {
-    userSeq.push(id);
-    console.log(id + " " + color);
-    addClassSound(id, color);
-    if (!checkUserSeq()) {
-        //if playing strict mode reset everything
-        if (strict) {
-            console.log("strict");
-            simonSeq = [];
-            level = 1;
-        }
-        error = true;
-        displayError();
-        userSeq = [];
-        simonSequence();
-    }
-    //checking end of sequence
-    else if (userSeq.length == simonSeq.length && userSeq.length < numLevels) {
-        level++;
-        userSeq = [];
-        error = false;
-        simonSequence();
-    }
-    //checking for winners
-    if (userSeq.length === numLevels) {
-        displayWinner();
-        resetGame();
-    }
-}
-//simonSequence
-function simonSequence() {
-    console.log("level " + level);
-    $(".display").text(level);
-    if (!error) {
-        getRandomNum();
-    }
-    if (error && strict) {
-        getRandomNum();
-    }
-    var i = 0;
-    var myInterval = setInterval(function () {
-        id = simonSeq[i];
-        color = $("#" + id).attr("class");
-        color = color.split(" ")[1];
-        console.log(id + " " + color);
+    //userSequence
+    function userSequence() {
+        userSeq.push(id);
         addClassSound(id, color);
-        i++;
-        if (i === simonSeq.length) {
-            clearInterval(myInterval);
+        if (!checkUserSeq()) {
+            //if playing strict mode reset everything
+            if (strict) {
+                console.log("strict");
+                simonSeq = [];
+                level = 1;
+            }
+            error = true;
+            displayError();
+            userSeq = [];
+            simonSequence();
         }
-        resetGame();
-    }, 1000);
-}
-// userSequence vs simonSequence
-function checkUserSeq() {
-    for (var i = 0; i < userSeq.length; i++) {
-        if (userSeq[i] != simonSeq[i]) {
-            return false;
+        //checking end of sequence
+        else if (userSeq.length == simonSeq.length && userSeq.length < numLevels) {
+            level++;
+            userSeq = [];
+            error = false;
+            simonSequence();
+        }
+        //checking for winners
+        if (userSeq.length === numLevels) {
+            displayWinner();
+            resetGame();
         }
     }
-    return true;
-}
+//simonSequence
+    function simonSequence() {
+        $(".display").text(level);
+        if (!error) {
+            getRandomNum();
+        }
+        if (error && strict) {
+            getRandomNum();
+        }
+        var i = 0;
+        var myInterval = setInterval(function () {
+            id = simonSeq[i];
+            color = $("#" + id).attr("class");
+            color = color.split(" ")[1];
+            console.log(id + " " + color);
+            addClassSound(id, color);
+            i++;
+            if (i === simonSeq.length) {
+                clearInterval(myInterval);
+            }
+            resetGame();
+        }, 1000);
+    }
+// userSequence vs simonSequence
+    function checkUserSeq() {
+        for (var i = 0; i < userSeq.length; i++) {
+            if (userSeq[i] != simonSeq[i]) {
+                return false;
+            }
+        }
+        return true;
+    }
 
 //3- Display 
-//display error  
-function displayError() {
-    console.log("error");
-    var counter = 0;
-    var myError = setInterval(function () {
-        $(".display").text("Err");
-        counter++;
-        if (counter === 3) {
-            $(".display").text(level);
-            clearInterval(myError);
-            userSeq = [];
-            counter = 0;
-        }
-    }, 500);
-}
-//display winner 
-function displayWinner() {
-    var count = 0;
-    var winInterval = setInterval(function () {
-        count++;
-        $(".display").text("Win");
-        if (count === numLevels) {
-            clearInterval(winInterval);
-            $(".display").text("00");
-            count = 0;
-        }
-    }, 500);
-}
+    //display error  
+    function displayError() {
+        var counter = 0;
+        var myError = setInterval(function () {
+            $(".display").text("Err");
+            counter++;
+            if (counter === 3) {
+                $(".display").text(level);
+                clearInterval(myError);
+                userSeq = [];
+                counter = 0;
+            }
+        }, 500);
+    }
+    //display winner 
+    function displayWinner() {
+        var count = 0;
+        var winInterval = setInterval(function () {
+            count++;
+            $(".display").text("Win");
+            if (count === numLevels) {
+                clearInterval(winInterval);
+                $(".display").text("00");
+                count = 0;
+            }
+        }, 500);
+    }
 
 
