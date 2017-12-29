@@ -1,0 +1,14 @@
+* {
+    background-color: black;
+    color: white;
+}
+
+.btn {
+    width: 100px;
+    padding: 10px;
+}
+
+.clock-timer {
+    font-size: 10em;
+    letter-spacing: -20%;
+}
