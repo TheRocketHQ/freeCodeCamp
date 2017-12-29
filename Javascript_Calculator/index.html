@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>JS Calculator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="container-fluid">
+    <div class="row">
+        <div class="container">
+            <h1 class="lead text-center">js Calculator</h1>
+        </div>
+    </div>
+    <hr>
+    <div class="calculator-box mx-auto" id="calculator">
+        <!-- 1 row -->
+        <div class="row">
+            <div class="calcOut mx-auto">
+                <h1 id="steps">0</h1>
+            </div>
+        </div>
+        <!-- 2 row -->
+        <div class="row mx-auto">
+            <div class="col-3">
+                <a class="btn btn-lg btn-primary " id="(">(</a>
+            </div>
+            <div class="col-3">
+                <a class="btn btn-lg btn-primary" id=")">)</a>
+                <br>
+            </div>
+            <div class="col-3">
+                <a class="btn btn-lg btn-danger" id="backOne">&#8592;</a>
+            </div>
+            <div class="col-3">
+                <a class="btn btn-lg btn-danger" id="deleteAll">Cl</a>
+            </div>
+        </div>
+        <!-- 3 row -->
+        <div class="row mx-auto">
+            <div class="col-3">
+                <a class="btn btn-lg btn-primary" id="7">7</a>
+            </div>
+            <div class="col-3">
+                <a class="btn btn-lg btn-primary" id="8">8</a>
+                <br>
+            </div>
+            <div class="col-3"></hr>
+                <a class="btn btn-lg btn-primary" id="9">9</a>
+            </div>
+            <div class="col-3">
+                <a class="btn btn-lg btn-info" id="/">/</a>
+            </div>
+        </div>
+        <!-- 4 row -->
+        <div class="row mx-auto">
+            <div class="col-3">
+                <a class="btn btn-lg btn-primary" id="4">4</a>
+            </div>
+            <div class="col-3">
+                <a class="btn btn-lg btn-primary" id="5">5</a>
+                <br>
+            </div>
+            <div class="col-3">
+                <a class="btn btn-lg btn-primary" id="6">6</a>
+            </div>
+            <div class="col-3">
+                <a class="btn btn-lg btn-info" id="*">*</a>
+            </div>
+        </div>
+        <!-- 5 row -->
+        <div class="row mx-auto">
+            <div class="col-3">
+                <a class="btn btn-lg btn-primary" id="1">1</a>
+            </div>
+            <div class="col-3">
+                <a class="btn btn-lg btn-primary" id="2">2</a>
+                <br>
+            </div>
+            <div class="col-3">
+                <a class="btn btn-lg btn-primary" id="3">3</a>
+            </div>
+            <div class="col-3">
+                <a class="btn btn-lg btn-info" id="-">-</a>
+            </div>
+        </div>
+        <!-- 6 row -->
+        <div class="row mx-auto">
+            <div class="col-3">
+                <a class="btn btn-lg btn-primary" id="0">0</a>
+            </div>
+            <div class="col-3">
+                <a class="btn btn-lg btn-primary" id=".">.</a>
+                <br>
+            </div>
+            <div class="col-3">
+                <a class="btn btn-lg btn-warning" id="total" style="color: grey">=</a>
+            </div>
+            <div class="col-3">
+                <a class="btn btn-lg btn-info" id="+">+</a>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="main.js"></script>
+</body>
+</html>
