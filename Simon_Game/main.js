@@ -164,7 +164,12 @@ $(document).ready(function () {
             if (i === simonSeq.length) {
                 clearInterval(myInterval);
             }
-            resetGame();
+            function resetGame() {
+            userSeq = [];
+            simonSeq = [];
+            level = 0;
+            $(".display").text("00");
+            }
         }, 1000);
     }
 // userSequence vs simonSequence
